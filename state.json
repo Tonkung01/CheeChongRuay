@@ -1,132 +1,132 @@
 {
   "XAUUSD": {
-    "last_bar_time": "2026-08-28 14:45:00-04:00",
+    "last_bar_time": "2026-08-28 14:50:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "BTCUSD": {
-    "last_bar_time": "2026-08-28 18:55:00+00:00",
+    "last_bar_time": "2026-08-28 19:00:00+00:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "EURUSD": {
-    "last_bar_time": "2026-08-28 19:55:00+01:00",
+    "last_bar_time": "2026-08-28 20:00:00+01:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "GBPUSD": {
-    "last_bar_time": "2026-08-28 19:55:00+01:00",
+    "last_bar_time": "2026-08-28 20:00:00+01:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "USDJPY": {
-    "last_bar_time": "2026-08-28 19:55:00+01:00",
+    "last_bar_time": "2026-08-28 20:00:00+01:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "USOIL": {
-    "last_bar_time": "2026-08-28 14:45:00-04:00",
+    "last_bar_time": "2026-08-28 14:50:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "SPX500": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "NAS100": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "NVDA": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "AAPL": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "MSFT": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "AMZN": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "GOOGL": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "INTC": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "AMD": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "TSM": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "ASML": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "SNDK": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "MU": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "SKHY": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "SPCX": {
-    "last_bar_time": "2026-08-28 14:55:00-04:00",
+    "last_bar_time": "2026-08-28 15:00:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "ETHUSD": {
-    "last_bar_time": "2026-08-28 18:55:00+00:00",
+    "last_bar_time": "2026-08-28 19:00:00+00:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "AUDUSD": {
-    "last_bar_time": "2026-08-28 19:50:00+01:00",
+    "last_bar_time": "2026-08-28 20:00:00+01:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "USDTHB": {
-    "last_bar_time": "2026-08-28 19:55:00+01:00",
+    "last_bar_time": "2026-08-28 20:00:00+01:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "XAGUSD": {
-    "last_bar_time": "2026-08-28 14:45:00-04:00",
+    "last_bar_time": "2026-08-28 14:50:00-04:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   },
   "BTCTHB": {
-    "last_bar_time": "2026-08-28 18:55:00+00:00",
+    "last_bar_time": "2026-08-28 19:00:00+00:00",
     "last_side": null,
-    "bars_since": 1000
+    "bars_since": 1001
   }
 }

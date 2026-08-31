@@ -17,7 +17,7 @@ at your own risk and manage your own risk.
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 import pandas as pd
 import requests
@@ -260,15 +260,14 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
             tp = price - SL_ATR_MULT * RR * atr_val
             emoji = "🔴"
 
+        thailand_tz = timezone(timedelta(hours=7))
         msg = (
             f"{emoji} <b>{side} {name}</b> ({cfg['label']})\n"
             f"Entry: {price:.{dec}f}\n"
             f"TP: {tp:.{dec}f}\n"
             f"SL: {sl:.{dec}f}\n"
             f"RSI: {last['rsi']:.1f}  |  ADX: {last['adx']:.1f}  |  Timeframe: {INTERVAL}\n"
-            f"เวลา (UTC): {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')}\n\n"
-            f"⚠️ สัญญาณจากอินดิเคเตอร์อัตโนมัติ (EMA/RSI/ADX/EMA50/ATR) ไม่ใช่คำแนะนำการลงทุน\n"
-            f"— ชี้ช่องรวย by โค้ชต้น💰"
+            f"เวลา (ไทย): {datetime.now(thailand_tz).strftime('%Y-%m-%d %H:%M')}"
         )
         print(f"[signal] {name}: {side} @ {price}")
         send_telegram(msg)

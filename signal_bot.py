@@ -65,13 +65,11 @@ INSTRUMENTS = {
 
 EMA_FAST = 9
 EMA_SLOW = 21
-EMA_TREND = 50          # long EMA used as a macro-trend filter (proxy for a
-                        # higher timeframe, without needing extra API calls)
 RSI_LEN = 14
 ATR_LEN = 14
 ADX_LEN = 14
-ADX_THRESHOLD = 20      # only trade when ADX shows a real trend (not choppy)
-SL_ATR_MULT = 2.0      # stop-loss distance = 2x ATR
+ADX_THRESHOLD = 15      # only trade when ADX shows a real trend (not choppy)
+SL_ATR_MULT = 1.5      # stop-loss distance = 1.5x ATR
 RR = 2                  # reward:risk multiple -> TP = SL distance x RR
 COOLDOWN_BARS = 3       # don't repeat the same-side signal within N bars
 
@@ -204,13 +202,12 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
         print(f"[error] {name}: download failed: {e}")
         return
 
-    if df is None or df.empty or len(df) < EMA_TREND + 2:
+    if df is None or df.empty or len(df) < EMA_SLOW + 2:
         print(f"[warn] {name}: not enough data ({0 if df is None else len(df)} bars)")
         return
 
     df["ema_fast"] = ema(df["Close"], EMA_FAST)
     df["ema_slow"] = ema(df["Close"], EMA_SLOW)
-    df["ema_trend"] = ema(df["Close"], EMA_TREND)
     df["rsi"] = rsi(df["Close"], RSI_LEN)
     df["atr"] = atr(df, ATR_LEN)
     df["adx"] = adx(df, ADX_LEN)
@@ -218,7 +215,7 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
     last = df.iloc[-1]
     prev = df.iloc[-2]
 
-    if (pd.isna(prev["ema_fast"]) or pd.isna(prev["ema_slow"]) or pd.isna(last["ema_trend"])
+    if (pd.isna(prev["ema_fast"]) or pd.isna(prev["ema_slow"])
             or pd.isna(last["rsi"]) or pd.isna(last["atr"]) or pd.isna(last["adx"])):
         print(f"[info] {name}: indicators not warmed up yet")
         return
@@ -226,18 +223,15 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
     cross_up = prev["ema_fast"] <= prev["ema_slow"] and last["ema_fast"] > last["ema_slow"]
     cross_down = prev["ema_fast"] >= prev["ema_slow"] and last["ema_fast"] < last["ema_slow"]
     trending = last["adx"] > ADX_THRESHOLD
-    uptrend = last["Close"] > last["ema_trend"]
-    downtrend = last["Close"] < last["ema_trend"]
 
     side = None
-    if cross_up and last["rsi"] < 70 and trending and uptrend:
+    if cross_up and last["rsi"] < 70 and trending:
         side = "BUY"
-    elif cross_down and last["rsi"] > 30 and trending and downtrend:
+    elif cross_down and last["rsi"] > 30 and trending:
         side = "SELL"
     elif cross_up or cross_down:
         print(f"[info] {name}: EMA cross detected but filtered out "
-              f"(adx={last['adx']:.1f}, trending={trending}, "
-              f"price_vs_ema50={'above' if uptrend else 'below'})")
+              f"(adx={last['adx']:.1f}, trending={trending})")
 
     bar_time = str(df.index[-1])
     inst_state = state.get(name, {"last_bar_time": None, "last_side": None, "bars_since": 999})

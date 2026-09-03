@@ -1,9 +1,19 @@
 """
 ชี้ช่องรวย by โค้ชต้น💰 — Signal Bot
 ----------------
-Fetches market data (free, no API key, via Yahoo Finance through yfinance),
-computes an EMA(9/21) crossover + RSI(14) filter signal with ATR(14)-based
-TP/SL, and sends an alert to Telegram when a new signal fires.
+Fetches market data (free, no API key, via Yahoo Finance through yfinance)
+on the M15 timeframe and evaluates a 3-step trend-following system:
+
+  Step 1: EMA(50) sets the only allowed direction (price above -> BUY only,
+          below -> SELL only), and EMA(9/21) must confirm that same momentum.
+  Step 2: ADX(14) must be > 25 (a real trend, not sideways/forming).
+  Step 3: RSI(14) or a fresh EMA(9/21) crossover triggers the entry --
+          either a pullback into the 40-50 (BUY) / 50-60 (SELL) zone that
+          then bounces back through 50, a classic oversold(<30)/
+          overbought(>70) cross, OR EMA(9) crossing EMA(21) on this bar.
+
+TP/SL are set from ATR(14): SL = 1.5x ATR, TP = 3x ATR (2:1 reward:risk).
+An alert is sent to Telegram only when all steps agree.
 
 Designed to be run on a schedule (e.g. every 15 minutes) by GitHub Actions,
 so it needs no server of its own. State (to avoid duplicate alerts) is kept
@@ -65,16 +75,22 @@ INSTRUMENTS = {
 
 EMA_FAST = 9
 EMA_SLOW = 21
+EMA_TREND = 50          # Step 1: sets allowed trade direction
 RSI_LEN = 14
 ATR_LEN = 14
 ADX_LEN = 14
-ADX_THRESHOLD = 15      # only trade when ADX shows a real trend (not choppy)
+ADX_THRESHOLD = 25      # Step 2: only trade when ADX > 25 (real trend, not sideways/forming)
+RSI_ZONE_LOOKBACK = 5   # bars to look back for "RSI was in the pullback zone"
+RSI_BUY_ZONE = (40, 50)
+RSI_SELL_ZONE = (50, 60)
+RSI_OVERSOLD = 30
+RSI_OVERBOUGHT = 70
 SL_ATR_MULT = 1.5      # stop-loss distance = 1.5x ATR
-RR = 2                  # reward:risk multiple -> TP = SL distance x RR
+RR = 2                  # reward:risk multiple -> TP = SL distance x RR (=> TP = 3x ATR)
 COOLDOWN_BARS = 3       # don't repeat the same-side signal within N bars
 
-INTERVAL = "5m"          # candle timeframe
-PERIOD = "5d"             # how much history to pull each run
+INTERVAL = "15m"         # candle timeframe (M15)
+PERIOD = "20d"            # how much history to pull each run (enough bars for EMA50 + lookback)
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "state.json")
 
@@ -202,12 +218,14 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
         print(f"[error] {name}: download failed: {e}")
         return
 
-    if df is None or df.empty or len(df) < EMA_SLOW + 2:
-        print(f"[warn] {name}: not enough data ({0 if df is None else len(df)} bars)")
+    min_bars = EMA_TREND + RSI_ZONE_LOOKBACK + 2
+    if df is None or df.empty or len(df) < min_bars:
+        print(f"[warn] {name}: not enough data ({0 if df is None else len(df)} bars, need {min_bars})")
         return
 
     df["ema_fast"] = ema(df["Close"], EMA_FAST)
     df["ema_slow"] = ema(df["Close"], EMA_SLOW)
+    df["ema_trend"] = ema(df["Close"], EMA_TREND)
     df["rsi"] = rsi(df["Close"], RSI_LEN)
     df["atr"] = atr(df, ATR_LEN)
     df["adx"] = adx(df, ADX_LEN)
@@ -215,23 +233,47 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
     last = df.iloc[-1]
     prev = df.iloc[-2]
 
-    if (pd.isna(prev["ema_fast"]) or pd.isna(prev["ema_slow"])
-            or pd.isna(last["rsi"]) or pd.isna(last["atr"]) or pd.isna(last["adx"])):
+    if (pd.isna(last["ema_trend"]) or pd.isna(last["ema_fast"]) or pd.isna(last["ema_slow"])
+            or pd.isna(prev["ema_fast"]) or pd.isna(prev["ema_slow"])
+            or pd.isna(last["rsi"]) or pd.isna(prev["rsi"])
+            or pd.isna(last["atr"]) or pd.isna(last["adx"])):
         print(f"[info] {name}: indicators not warmed up yet")
         return
 
-    cross_up = prev["ema_fast"] <= prev["ema_slow"] and last["ema_fast"] > last["ema_slow"]
-    cross_down = prev["ema_fast"] >= prev["ema_slow"] and last["ema_fast"] < last["ema_slow"]
+    # Step 1: EMA50 sets the only allowed direction
+    if last["Close"] > last["ema_trend"]:
+        direction = "UP"
+    elif last["Close"] < last["ema_trend"]:
+        direction = "DOWN"
+    else:
+        direction = None
+
+    # Step 2: ADX must show a real trend
     trending = last["adx"] > ADX_THRESHOLD
 
+    # EMA(9/21) momentum must also align with the trade direction
+    momentum_up = last["ema_fast"] > last["ema_slow"]
+    momentum_down = last["ema_fast"] < last["ema_slow"]
+
+    # fresh EMA(9/21) crossover this bar -- an entry trigger on its own
+    ema_cross_up = prev["ema_fast"] <= prev["ema_slow"] and last["ema_fast"] > last["ema_slow"]
+    ema_cross_down = prev["ema_fast"] >= prev["ema_slow"] and last["ema_fast"] < last["ema_slow"]
+
     side = None
-    if cross_up and last["rsi"] < 70 and trending:
-        side = "BUY"
-    elif cross_down and last["rsi"] > 30 and trending:
-        side = "SELL"
-    elif cross_up or cross_down:
-        print(f"[info] {name}: EMA cross detected but filtered out "
-              f"(adx={last['adx']:.1f}, trending={trending})")
+    if direction and trending:
+        rsi_window = df["rsi"].iloc[-(RSI_ZONE_LOOKBACK + 1):-1]  # bars before the current one
+        if direction == "UP" and momentum_up:
+            was_in_buy_zone = rsi_window.between(*RSI_BUY_ZONE).any()
+            bounced = was_in_buy_zone and prev["rsi"] <= 50 and last["rsi"] > 50
+            oversold_cross = prev["rsi"] <= RSI_OVERSOLD and last["rsi"] > RSI_OVERSOLD
+            if bounced or oversold_cross or ema_cross_up:
+                side = "BUY"
+        elif direction == "DOWN" and momentum_down:
+            was_in_sell_zone = rsi_window.between(*RSI_SELL_ZONE).any()
+            bounced = was_in_sell_zone and prev["rsi"] >= 50 and last["rsi"] < 50
+            overbought_cross = prev["rsi"] >= RSI_OVERBOUGHT and last["rsi"] < RSI_OVERBOUGHT
+            if bounced or overbought_cross or ema_cross_down:
+                side = "SELL"
 
     bar_time = str(df.index[-1])
     inst_state = state.get(name, {"last_bar_time": None, "last_side": None, "bars_since": 999})
@@ -269,7 +311,10 @@ def evaluate_instrument(name: str, cfg: dict, state: dict) -> None:
         inst_state["last_side"] = side
         inst_state["bars_since"] = 0
     else:
-        print(f"[info] {name}: no new signal (rsi={last['rsi']:.1f}, trend={'up' if last['ema_fast']>last['ema_slow'] else 'down'})")
+        dir_txt = direction or "none"
+        mom_txt = "up" if momentum_up else ("down" if momentum_down else "flat")
+        print(f"[info] {name}: no new signal (rsi={last['rsi']:.1f}, adx={last['adx']:.1f}, "
+              f"direction={dir_txt}, trending={trending}, momentum={mom_txt})")
 
     state[name] = inst_state
 

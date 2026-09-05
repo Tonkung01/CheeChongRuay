@@ -5,9 +5,9 @@
     "bars_since": 204
   },
   "BTCUSD": {
-    "last_bar_time": "2026-09-05 19:15:00+00:00",
+    "last_bar_time": "2026-09-05 19:30:00+00:00",
     "last_side": "SELL",
-    "bars_since": 230
+    "bars_since": 231
   },
   "EURUSD": {
     "last_bar_time": "2026-09-04 22:15:00+01:00",
@@ -105,9 +105,9 @@
     "bars_since": 70
   },
   "ETHUSD": {
-    "last_bar_time": "2026-09-05 19:15:00+00:00",
+    "last_bar_time": "2026-09-05 19:30:00+00:00",
     "last_side": "BUY",
-    "bars_since": 173
+    "bars_since": 174
   },
   "AUDUSD": {
     "last_bar_time": "2026-09-04 22:30:00+01:00",
@@ -125,8 +125,8 @@
     "bars_since": 99
   },
   "BTCTHB": {
-    "last_bar_time": "2026-09-05 19:15:00+00:00",
+    "last_bar_time": "2026-09-05 19:30:00+00:00",
     "last_side": "BUY",
-    "bars_since": 154
+    "bars_since": 155
   }
 }

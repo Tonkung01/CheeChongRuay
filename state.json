@@ -1,33 +1,33 @@
 {
   "XAUUSD": {
-    "last_bar_time": "2026-09-08 16:45:00-04:00",
+    "last_bar_time": "2026-09-08 18:00:00-04:00",
     "last_side": "BUY",
-    "bars_since": 281
+    "bars_since": 282
   },
   "BTCUSD": {
-    "last_bar_time": "2026-09-08 22:00:00+00:00",
+    "last_bar_time": "2026-09-08 22:15:00+00:00",
     "last_side": "BUY",
-    "bars_since": 46
+    "bars_since": 47
   },
   "EURUSD": {
-    "last_bar_time": "2026-09-08 23:00:00+01:00",
+    "last_bar_time": "2026-09-08 23:15:00+01:00",
     "last_side": "BUY",
-    "bars_since": 283
+    "bars_since": 284
   },
   "GBPUSD": {
-    "last_bar_time": "2026-09-08 23:00:00+01:00",
+    "last_bar_time": "2026-09-08 23:15:00+01:00",
     "last_side": "SELL",
-    "bars_since": 231
+    "bars_since": 232
   },
   "USDJPY": {
-    "last_bar_time": "2026-09-08 23:00:00+01:00",
+    "last_bar_time": "2026-09-08 23:15:00+01:00",
     "last_side": "SELL",
-    "bars_since": 349
+    "bars_since": 350
   },
   "USOIL": {
-    "last_bar_time": "2026-09-08 16:45:00-04:00",
+    "last_bar_time": "2026-09-08 18:00:00-04:00",
     "last_side": "BUY",
-    "bars_since": 8
+    "bars_since": 9
   },
   "SPX500": {
     "last_bar_time": "2026-09-08 15:45:00-04:00",
@@ -105,28 +105,28 @@
     "bars_since": 96
   },
   "ETHUSD": {
-    "last_bar_time": "2026-09-08 22:00:00+00:00",
+    "last_bar_time": "2026-09-08 22:15:00+00:00",
     "last_side": "BUY",
-    "bars_since": 202
+    "bars_since": 203
   },
   "AUDUSD": {
-    "last_bar_time": "2026-09-08 23:00:00+01:00",
+    "last_bar_time": "2026-09-08 23:15:00+01:00",
     "last_side": "BUY",
-    "bars_since": 133
+    "bars_since": 134
   },
   "USDTHB": {
-    "last_bar_time": "2026-09-08 23:00:00+01:00",
+    "last_bar_time": "2026-09-08 23:15:00+01:00",
     "last_side": "SELL",
-    "bars_since": 4
+    "bars_since": 5
   },
   "XAGUSD": {
-    "last_bar_time": "2026-09-08 16:45:00-04:00",
+    "last_bar_time": "2026-09-08 18:00:00-04:00",
     "last_side": "SELL",
-    "bars_since": 177
+    "bars_since": 178
   },
   "BTCTHB": {
-    "last_bar_time": "2026-09-08 22:00:00+00:00",
+    "last_bar_time": "2026-09-08 22:15:00+00:00",
     "last_side": "BUY",
-    "bars_since": 201
+    "bars_since": 202
   }
 }

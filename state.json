@@ -1,132 +1,132 @@
 {
   "XAUUSD": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "BUY",
-    "bars_since": 272
+    "bars_since": 273
   },
   "BTCUSD": {
-    "last_bar_time": "2026-09-08 18:30:00+00:00",
+    "last_bar_time": "2026-09-08 18:45:00+00:00",
     "last_side": "BUY",
-    "bars_since": 32
+    "bars_since": 33
   },
   "EURUSD": {
-    "last_bar_time": "2026-09-08 19:30:00+01:00",
+    "last_bar_time": "2026-09-08 19:45:00+01:00",
     "last_side": "BUY",
-    "bars_since": 269
+    "bars_since": 270
   },
   "GBPUSD": {
-    "last_bar_time": "2026-09-08 19:30:00+01:00",
+    "last_bar_time": "2026-09-08 19:45:00+01:00",
     "last_side": "SELL",
-    "bars_since": 217
+    "bars_since": 218
   },
   "USDJPY": {
-    "last_bar_time": "2026-09-08 19:30:00+01:00",
+    "last_bar_time": "2026-09-08 19:45:00+01:00",
     "last_side": "SELL",
-    "bars_since": 335
+    "bars_since": 336
   },
   "USOIL": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "SELL",
-    "bars_since": 19
+    "bars_since": 20
   },
   "SPX500": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "SELL",
-    "bars_since": 41
+    "bars_since": 42
   },
   "NAS100": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 100
+  },
+  "NVDA": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 67
+  },
+  "AAPL": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 59
+  },
+  "MSFT": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 46
+  },
+  "AMZN": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 150
+  },
+  "GOOGL": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 24
+  },
+  "INTC": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "SELL",
+    "bars_since": 83
+  },
+  "AMD": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "BUY",
+    "bars_since": 67
+  },
+  "TSM": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "BUY",
+    "bars_since": 93
+  },
+  "ASML": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "BUY",
+    "bars_since": 47
+  },
+  "SNDK": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": null,
+    "bars_since": 1153
+  },
+  "MU": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
+    "last_side": "BUY",
+    "bars_since": 67
+  },
+  "SKHY": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "SELL",
     "bars_since": 99
   },
-  "NVDA": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 66
-  },
-  "AAPL": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 58
-  },
-  "MSFT": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 45
-  },
-  "AMZN": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 149
-  },
-  "GOOGL": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 23
-  },
-  "INTC": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 82
-  },
-  "AMD": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "BUY",
-    "bars_since": 66
-  },
-  "TSM": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+  "SPCX": {
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "BUY",
     "bars_since": 92
   },
-  "ASML": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "BUY",
-    "bars_since": 46
-  },
-  "SNDK": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": null,
-    "bars_since": 1152
-  },
-  "MU": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "BUY",
-    "bars_since": 66
-  },
-  "SKHY": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "SELL",
-    "bars_since": 98
-  },
-  "SPCX": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
-    "last_side": "BUY",
-    "bars_since": 91
-  },
   "ETHUSD": {
-    "last_bar_time": "2026-09-08 18:30:00+00:00",
+    "last_bar_time": "2026-09-08 18:45:00+00:00",
     "last_side": "BUY",
-    "bars_since": 188
+    "bars_since": 189
   },
   "AUDUSD": {
-    "last_bar_time": "2026-09-08 19:30:00+01:00",
+    "last_bar_time": "2026-09-08 19:45:00+01:00",
     "last_side": "BUY",
-    "bars_since": 119
+    "bars_since": 120
   },
   "USDTHB": {
-    "last_bar_time": "2026-09-08 19:30:00+01:00",
+    "last_bar_time": "2026-09-08 19:45:00+01:00",
     "last_side": "BUY",
-    "bars_since": 31
+    "bars_since": 32
   },
   "XAGUSD": {
-    "last_bar_time": "2026-09-08 14:30:00-04:00",
+    "last_bar_time": "2026-09-08 14:45:00-04:00",
     "last_side": "SELL",
-    "bars_since": 168
+    "bars_since": 169
   },
   "BTCTHB": {
-    "last_bar_time": "2026-09-08 18:30:00+00:00",
+    "last_bar_time": "2026-09-08 18:45:00+00:00",
     "last_side": "BUY",
-    "bars_since": 187
+    "bars_since": 188
   }
 }
